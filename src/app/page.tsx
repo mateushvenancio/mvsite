@@ -12,7 +12,6 @@ export default function Home() {
         <>
             <div className="max-w-[700px] m-auto pt-24 px-4 text-black-400">
                 <Header />
-                <About />
                 <HomeSpotify />
                 <Projects />
                 <HomeFooter />
@@ -26,7 +25,7 @@ function Header() {
         <div>
             <Toast />
             <h1 className="text-4xl font-bold">Mateus Venâncio</h1>
-            <h2 className="text-3xl">Developer</h2>
+            <h2 className="text-2xl">Developer</h2>
             <br />
             <div className="grid gap-y-1">
                 <HomeIcon
@@ -45,6 +44,13 @@ function Header() {
                     link="https://github.com/mateushvenancio"
                 />
             </div>
+            <div className="py-2">
+                <p>
+                    I make software. That&apos;s what I love to do. You can read
+                    more about me{' '}
+                    <span className="text-primary underline">here</span>.
+                </p>
+            </div>
         </div>
     );
 }
@@ -52,7 +58,7 @@ function Header() {
 function Toast() {
     return (
         <div className="bg-primary w-fit text-white px-4 py-2 rounded-tr-lg rounded-tl-lg rounded-br-lg mb-2 hover:ml-2 transition-all">
-            Olá, eu sou
+            Hello, I am
         </div>
     );
 }
@@ -65,18 +71,6 @@ function HomeIcon({ icon, text, link }: TypeIcon) {
         </a>
     );
 }
-
-function About() {
-    return (
-        <div className="py-2 [&>p]:">
-            <p>
-                I make <span className="text-primary">mobile apps</span>, some
-                servers and websites.
-            </p>
-        </div>
-    );
-}
-
 function Title({ title }: { title: string }) {
     return (
         <div className="text-lg font-bold border-dashed border-t-2 border-primary pt-4 mt-4">
