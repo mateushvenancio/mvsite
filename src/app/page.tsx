@@ -68,21 +68,12 @@ function HomeIcon({ icon, text, link }: TypeIcon) {
 
 function About() {
     return (
-        <>
-            <Title title="About" />
-            <div className="py-2">
-                <p>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Eligendi deserunt libero quaerat accusamus commodi vel
-                    magnam veritatis cumque, aliquid soluta. Consequatur dolores
-                    rem neque suscipit molestiae ab perferendis iure quaerat.
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Eligendi deserunt libero quaerat accusamus commodi vel
-                    magnam veritatis cumque, aliquid soluta. Consequatur dolores
-                    rem neque suscipit molestiae ab perferendis iure quaerat.
-                </p>
-            </div>
-        </>
+        <div className="py-2 [&>p]:">
+            <p>
+                I make <span className="text-primary">mobile apps</span>, some
+                servers and websites.
+            </p>
+        </div>
     );
 }
 
