@@ -4,18 +4,17 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import HomeSpotify from './spotify';
+import Link from 'next/link';
 
 type TypeIcon = { icon: any; text: string; link: string };
 
 export default function Home() {
     return (
         <>
-            <div className="max-w-[700px] m-auto pt-24 px-4 text-black-400">
-                <Header />
-                <HomeSpotify />
-                <Projects />
-                <HomeFooter />
-            </div>
+            <Header />
+            <HomeSpotify />
+            <Projects />
+            {/* <HomeFooter /> */}
         </>
     );
 }
@@ -48,7 +47,10 @@ function Header() {
                 <p>
                     I make software. That&apos;s what I love to do. You can read
                     more about me{' '}
-                    <span className="text-primary underline">here</span>.
+                    <Link href="/about" className="text-primary underline">
+                        here
+                    </Link>
+                    .
                 </p>
             </div>
         </div>
@@ -124,14 +126,6 @@ function TechChip({ name }: { name: String }) {
     return (
         <div className="py-2 w-fit text-primary px-1 py-0 border rounded border-primary text-sm hover:text-white hover:bg-primary transition-all">
             {name}
-        </div>
-    );
-}
-
-function HomeFooter() {
-    return (
-        <div className="py-8 text-center border-dashed border-t-2 py-4 my-8 border-primary">
-            Made with ❤️ by Mateus Venâncio using Tailwind & NextJs.
         </div>
     );
 }

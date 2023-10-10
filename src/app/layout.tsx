@@ -3,6 +3,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { config } from '@fortawesome/fontawesome-svg-core';
+import NavBar from './navbar';
 config.autoAddCss = false;
 
 const inter = Inter({ subsets: ['latin'] });
@@ -19,7 +20,19 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className={inter.className}>{children}</body>
+            <body className={`${inter.className} px-4 max-w-[700px] m-auto`}>
+                <NavBar />
+                {children}
+                <HomeFooter />
+            </body>
         </html>
+    );
+}
+
+function HomeFooter() {
+    return (
+        <div className="py-8 text-center border-dashed border-t-2 py-4 my-8 border-primary">
+            Made with ❤️ by Mateus Venâncio using Tailwind & NextJs.
+        </div>
     );
 }
