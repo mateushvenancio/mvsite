@@ -3,10 +3,10 @@ const nextConfig = {
     images: {
         remotePatterns: [
             {
-                hostname: 'www.mateusvenancio.com.br',
+                hostname: 'media.gq.com',
             },
             {
-                hostname: 'images-americanas.b2w.io',
+                hostname: 'images.unsplash.com',
             },
         ],
     },
