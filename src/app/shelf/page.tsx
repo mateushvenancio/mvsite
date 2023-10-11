@@ -1,4 +1,5 @@
 import Games from './games';
+import Title from './title';
 
 export default function Shelf() {
     return (

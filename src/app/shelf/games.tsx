@@ -6,74 +6,38 @@ const games: GameType[] = [
     {
         name: 'The Legend of Zelda: Breath of the Wild',
         rate: 5,
-        desc: 'My favorite game of all time',
+        desc: '',
         image: '/botw.png',
     },
     {
-        name: 'The Legend of Zelda: Breath of the Wild',
+        name: 'Red Dead Redemption 2',
         rate: 5,
-        desc: 'My favorite game of all time',
-        image: '/botw.png',
+        desc: '',
+        image: '/rdr2.jpg',
     },
     {
-        name: 'The Legend of Zelda: Breath of the Wild',
+        name: 'Stardew Valley',
         rate: 5,
-        desc: 'My favorite game of all time',
-        image: '/botw.png',
+        desc: '',
+        image: '/sv.png',
     },
     {
-        name: 'The Legend of Zelda: Breath of the Wild',
-        rate: 5,
-        desc: 'My favorite game of all time',
-        image: '/botw.png',
+        name: 'Hogwarts Legacy',
+        rate: 4,
+        desc: '',
+        image: '/hl.jpg',
     },
     {
-        name: 'The Legend of Zelda: Breath of the Wild',
-        rate: 5,
-        desc: 'My favorite game of all time',
-        image: '/botw.png',
+        name: 'Sea of Stars',
+        rate: 4,
+        desc: '',
+        image: '/sos.jpg',
     },
     {
-        name: 'The Legend of Zelda: Breath of the Wild',
-        rate: 5,
-        desc: 'My favorite game of all time',
-        image: '/botw.png',
-    },
-    {
-        name: 'The Legend of Zelda: Breath of the Wild',
-        rate: 5,
-        desc: 'My favorite game of all time',
-        image: '/botw.png',
-    },
-    {
-        name: 'The Legend of Zelda: Breath of the Wild',
-        rate: 5,
-        desc: 'My favorite game of all time',
-        image: '/botw.png',
-    },
-    {
-        name: 'The Legend of Zelda: Breath of the Wild',
-        rate: 5,
-        desc: 'My favorite game of all time',
-        image: '/botw.png',
-    },
-    {
-        name: 'The Legend of Zelda: Breath of the Wild',
-        rate: 5,
-        desc: 'My favorite game of all time',
-        image: '/botw.png',
-    },
-    {
-        name: 'The Legend of Zelda: Breath of the Wild',
-        rate: 5,
-        desc: 'My favorite game of all time',
-        image: '/botw.png',
-    },
-    {
-        name: 'The Legend of Zelda: Breath of the Wild',
-        rate: 5,
-        desc: 'My favorite game of all time',
-        image: '/botw.png',
+        name: 'Pokémon Scarlet',
+        rate: 4,
+        desc: '',
+        image: '/ps.jpg',
     },
 ];
 
@@ -88,16 +52,16 @@ export default function Games() {
     );
 }
 
-export function GameTile({ game }: { game: GameType }) {
+function GameTile({ game }: { game: GameType }) {
     return (
-        <div className="relative">
-            <div className="shadow-md hover:shadow-xl transition-all">
+        <div className="relative shadow-md hover:shadow-xl transition-all">
+            <div>
                 <Image
                     src={game.image}
                     alt={game.name}
                     width={100}
                     height={100}
-                    className="w-full"
+                    className="w-full aspect-[3/4] object-cover"
                 />
             </div>
             <div className="absolute w-full h-full bg-gradient-to-b from-transparent to-black/50 top-0"></div>
@@ -109,23 +73,24 @@ export function GameTile({ game }: { game: GameType }) {
     );
 }
 
-export function RatingStars({ rating }: { rating: number }) {
-    const complete = 5 - rating;
+function RatingStars({ rating }: { rating: number }) {
     return (
         <div className="flex">
-            <Star />
-            <Star />
-            <Star />
-            <Star />
-            <Star />
+            <Star filled={rating >= 1} />
+            <Star filled={rating >= 2} />
+            <Star filled={rating >= 3} />
+            <Star filled={rating >= 4} />
+            <Star filled={rating >= 5} />
         </div>
     );
 }
 
-export function Star() {
+function Star({ filled }: { filled: boolean }) {
     return (
         <svg
-            className="w-5 h-5 text-yellow-400"
+            className={`w-5 h-5 ${
+                filled ? 'text-yellow-400' : 'text-gray-400'
+            }`}
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
