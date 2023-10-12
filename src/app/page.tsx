@@ -2,7 +2,6 @@ import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
 import HomeSpotify from './spotify';
 import Link from 'next/link';
 
@@ -73,6 +72,7 @@ function HomeIcon({ icon, text, link }: TypeIcon) {
         </a>
     );
 }
+
 function Title({ title }: { title: string }) {
     return (
         <div className="text-lg font-bold border-dashed border-t-2 border-primary pt-4 mt-4">
