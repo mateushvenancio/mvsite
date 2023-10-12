@@ -31,7 +31,7 @@ export default function RootLayout({
 
 function HomeFooter() {
     return (
-        <div className="py-8 text-center border-dashed border-t-2 py-4 my-8 border-primary">
+        <div className="py-8 text-center border border-t-primary/25 border-b-transparent border-x-transparent py-4 mt-8">
             Made with ❤️ by Mateus Venâncio using Tailwind & NextJs.
         </div>
     );
