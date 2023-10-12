@@ -1,31 +1,19 @@
 'use client';
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-
-type NavBarLinkType = { label: string; link: string };
+import { useState } from 'react';
 
 export default function NavBar() {
+    const [aberto, setAberto] = useState(false);
     return (
-        <div className="z-10 w-full px-6 py-2 my-4 backdrop-blur-sm text-primary border border-primary rounded-full sticky top-4 cursor-default">
-            <div className="flex justify-end gap-4 align-baseline">
-                <NavBarLink label="Home" link="/" />
-                <NavBarLink label="Shelf" link="/shelf" />
-                <NavBarLink label="About" link="/about" />
-            </div>
+        <div
+            className={`h-[${
+                aberto ? '100px' : '200px'
+            }] bg-red-400 transition-all`}
+            onClick={() => {
+                setAberto(!aberto);
+            }}
+        >
+            Nav Bar
         </div>
-    );
-}
-
-export function NavBarLink({ label, link }: NavBarLinkType) {
-    const pathname = usePathname();
-    let classes = 'cursor-default hover:underline';
-    if (pathname === link) {
-        classes += ' font-bold';
-    }
-    return (
-        <Link className={classes} href={link}>
-            {label}
-        </Link>
     );
 }
