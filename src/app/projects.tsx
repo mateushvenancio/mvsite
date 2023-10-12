@@ -16,9 +16,16 @@ const icons = {
         'https://user-images.githubusercontent.com/25181517/186150365-da1eccce-6201-487c-8649-45e9e99435fd.png',
     dart: 'https://user-images.githubusercontent.com/25181517/186150304-1568ffdf-4c62-4bdc-9cf1-8d8efcea7c5b.png',
     react: 'https://user-images.githubusercontent.com/25181517/183897015-94a058a6-b86e-4e42-a37f-bf92061753e5.png',
+    next: 'https://github.com/marwin1991/profile-technology-icons/assets/136815194/5f8c622c-c217-4649-b0a9-7e0ee24bd704',
 };
 
 const projects: ProjectType[] = [
+    {
+        title: 'Site',
+        description: 'This website :D',
+        icon: icons.next,
+        link: 'https://github.com/mateushvenancio/mvsite',
+    },
     {
         title: 'Organizzer',
         description:
