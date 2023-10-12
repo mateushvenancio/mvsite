@@ -1,10 +1,9 @@
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
-import { faCodeBranch, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HomeSpotify from './spotify';
-import Link from 'next/link';
-import Image from 'next/image';
+import Projects from './projects';
 
 type TypeIcon = { icon: any; text: string; link: string };
 
@@ -63,59 +62,5 @@ function HomeIcon({ icon, text, link }: TypeIcon) {
             <FontAwesomeIcon icon={icon} className="pr-2" />
             {text}
         </a>
-    );
-}
-
-function Title({ title }: { title: string }) {
-    return (
-        <div className="text-lg font-bold border-dashed border-t-2 border-primary pt-4 mt-4">
-            {title}
-        </div>
-    );
-}
-
-function Projects() {
-    return (
-        <>
-            <Title title="Projects" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <ProjectTile />
-                <ProjectTile />
-                <ProjectTile />
-                <ProjectTile />
-                <ProjectTile />
-                <ProjectTile />
-            </div>
-        </>
-    );
-}
-
-function ProjectTile() {
-    return (
-        <div className="shadow-md hover:shadow-lg rounded-lg p-4 transition-all cursor-default">
-            <div className="flex gap-2 items-center">
-                <Image
-                    src="https://user-images.githubusercontent.com/25181517/186150365-da1eccce-6201-487c-8649-45e9e99435fd.png"
-                    width={20}
-                    height={20}
-                    alt="Mateus Venâncio"
-                    className="aspect-square"
-                />
-                <p className="text-lg">Título do projeto</p>
-                <div className="grow"></div>
-                <Link href="#">
-                    <FontAwesomeIcon
-                        icon={faCodeBranch}
-                        className="cursor-pointer"
-                    />
-                </Link>
-            </div>
-            <p className="text-sm line-clamp-2">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Placeat aspernatur voluptatum nihil, quos in ipsa doloremque
-                nulla rem ut alias corrupti repellat totam eos beatae. Illo
-                soluta ipsa unde eaque.
-            </p>
-        </div>
     );
 }
