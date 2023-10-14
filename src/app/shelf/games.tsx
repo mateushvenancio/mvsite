@@ -1,49 +1,14 @@
 import Image from 'next/image';
 
-type GameType = { name: string; rate: number; desc: string; image: string };
+type GameType = { title: string; rate: number; desc: string; image: string };
 
-const games: GameType[] = [
-    {
-        name: 'The Legend of Zelda: Breath of the Wild',
-        rate: 5,
-        desc: '',
-        image: '/botw.png',
-    },
-    {
-        name: 'Red Dead Redemption 2',
-        rate: 5,
-        desc: '',
-        image: '/rdr2.jpg',
-    },
-    {
-        name: 'Stardew Valley',
-        rate: 5,
-        desc: '',
-        image: '/sv.png',
-    },
-    {
-        name: 'Hogwarts Legacy',
-        rate: 4,
-        desc: '',
-        image: '/hl.jpg',
-    },
-    {
-        name: 'Sea of Stars',
-        rate: 4,
-        desc: '',
-        image: '/sos.jpg',
-    },
-    {
-        name: 'Pokémon Scarlet',
-        rate: 4,
-        desc: '',
-        image: '/ps.jpg',
-    },
-];
+export default async function Games() {
+    const response = await fetch(
+        'https://raw.githubusercontent.com/mateushvenancio/projetos-md/main/shelf.json'
+    );
+    const games: GameType[] = (await response.json()).games;
 
-export default function Games() {
     return (
-        // <div className="flex flex-col gap-4 mt-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
             {games.map((e, index) => (
                 <GameTile key={index} game={e} />
@@ -58,7 +23,7 @@ function GameTile({ game }: { game: GameType }) {
             <div>
                 <Image
                     src={game.image}
-                    alt={game.name}
+                    alt={game.title}
                     width={100}
                     height={100}
                     className="w-full aspect-[3/4] object-cover"
@@ -66,7 +31,7 @@ function GameTile({ game }: { game: GameType }) {
             </div>
             <div className="absolute w-full h-full bg-gradient-to-b from-transparent to-black/50 top-0"></div>
             <div className="absolute bottom-0 text-white pl-2 pb-2 text-sm cursor-default">
-                {game.name}
+                {game.title}
                 <RatingStars rating={game.rate} />
             </div>
         </div>

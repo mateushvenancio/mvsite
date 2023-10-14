@@ -1,5 +1,4 @@
 import Games from './games';
-import Title from './title';
 
 export default function Shelf() {
     return (
@@ -8,7 +7,10 @@ export default function Shelf() {
             <p>
                 Welcome to my shelf. You can see the books I read, TV shows I
                 watched and the games I played. I&apos;m excited to share it
-                here.
+                here.{' '}
+                <span className="text-primary font-semibold">
+                    (Under construction)
+                </span>
             </p>
             <Games />
         </>
