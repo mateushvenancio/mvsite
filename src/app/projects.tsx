@@ -4,18 +4,11 @@ import Title from './global/title';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 
-type ProjectType = {
-    title: string;
-    description: string;
-    icon: string;
-    link: string;
-};
-
 export default async function Projects() {
     const response = await fetch(
         'https://raw.githubusercontent.com/mateushvenancio/projetos-md/main/projects.json'
     );
-    const projects: ProjectType[] = (await response.json()).projects;
+    const projects: Project[] = (await response.json()).projects;
 
     return (
         <>
@@ -29,7 +22,7 @@ export default async function Projects() {
     );
 }
 
-function ProjectTile({ project }: { project: ProjectType }) {
+function ProjectTile({ project }: { project: Project }) {
     return (
         <div className="shadow-md hover:shadow-lg rounded-lg p-4 transition-all cursor-default">
             <div className="flex gap-2 items-center">

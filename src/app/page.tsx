@@ -5,8 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HomeSpotify from './spotify';
 import Projects from './projects';
 
-type TypeIcon = { icon: any; text: string; link: string };
-
 export default function Home() {
     return (
         <>
@@ -56,7 +54,15 @@ function Toast() {
     );
 }
 
-function HomeIcon({ icon, text, link }: TypeIcon) {
+function HomeIcon({
+    icon,
+    text,
+    link,
+}: {
+    icon: any;
+    text: string;
+    link: string;
+}) {
     return (
         <a href={link} className="hover:text-primary hover:pl-2 transition-all">
             <FontAwesomeIcon icon={icon} className="pr-2" />

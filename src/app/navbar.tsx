@@ -3,8 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-type NavBarLinkType = { label: string; link: string };
-
 export default function NavBar() {
     return (
         <div className="z-10 w-full py-4 mb-4 text-primary border border-b-primary/25 border-t-transparent border-x-transparent cursor-default">
@@ -23,7 +21,7 @@ export default function NavBar() {
     );
 }
 
-export function NavBarLink({ label, link }: NavBarLinkType) {
+export function NavBarLink({ label, link }: { label: string; link: string }) {
     const pathname = usePathname();
     let classes = 'cursor-default hover:underline';
     if (pathname === link) {

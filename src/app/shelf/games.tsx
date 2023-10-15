@@ -1,12 +1,10 @@
 import Image from 'next/image';
 
-type GameType = { title: string; rate: number; desc: string; image: string };
-
 export default async function Games() {
     const response = await fetch(
         'https://raw.githubusercontent.com/mateushvenancio/projetos-md/main/shelf.json'
     );
-    const games: GameType[] = (await response.json()).games;
+    const games: Game[] = (await response.json()).games;
 
     return (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
@@ -17,7 +15,7 @@ export default async function Games() {
     );
 }
 
-function GameTile({ game }: { game: GameType }) {
+function GameTile({ game }: { game: Game }) {
     return (
         <div className="relative shadow-md hover:shadow-xl transition-all">
             <div>
