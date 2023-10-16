@@ -1,10 +1,10 @@
 import { DateConvert } from '@/app/global/date-convert';
 import Link from 'next/link';
 import BlogTag from '../tag';
+import MongoService from '@/services/mongo-service';
 
 export default async function BlogPage({ params: { pid } }: any) {
-    const response = await fetch(`http://localhost:3000/api/blog/${pid}`);
-    const { post }: { post: BlogPost } = await response.json();
+    const post: BlogPost = await MongoService.getBlogPostById(pid);
 
     return (
         <div className="">

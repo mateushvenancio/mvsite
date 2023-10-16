@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Title from './global/title';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
+import MongoService from '@/services/mongo-service';
 
 const colors: any = {
     yellow: {
@@ -27,8 +28,7 @@ const colors: any = {
 };
 
 export default async function Projects() {
-    const response = await fetch('http://localhost:3000/api/projects');
-    const projects: Project[] = (await response.json()).projects;
+    const projects: Project[] = await MongoService.getAllProjects();
 
     return (
         <>

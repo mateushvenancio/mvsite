@@ -1,11 +1,10 @@
 import moment from 'moment';
 import Link from 'next/link';
 import BlogTag from './tag';
+import MongoService from '@/services/mongo-service';
 
 export default async function Blog() {
-    const response = await fetch('http://localhost:3000/api/blog');
-    const json = await response.json();
-    const posts: BlogPost[] = json.results;
+    const posts: BlogPost[] = await MongoService.getAllBlogPosts();
 
     if (!posts) {
         return <div className="text-center">No posts yet! :)</div>;
