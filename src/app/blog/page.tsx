@@ -1,5 +1,6 @@
 import moment from 'moment';
 import Link from 'next/link';
+import BlogTag from './tag';
 
 export default async function Blog() {
     const response = await fetch('http://localhost:3000/api/blog');
@@ -34,14 +35,6 @@ function BlogPost({ post }: { post: BlogPost }) {
                     return <BlogTag key={i} tag={e} />;
                 })}
             </div>
-        </div>
-    );
-}
-
-function BlogTag({ tag }: { tag: Tag }) {
-    return (
-        <div className="text-xs bg-gray-200 text-gray-600 rounded px-2">
-            {tag.name}
         </div>
     );
 }

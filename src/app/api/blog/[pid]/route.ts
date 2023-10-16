@@ -8,7 +8,8 @@ export async function GET(req: Request, { params: { pid } }: any) {
         block_id: pid,
     });
 
-    const pageObject = page.object as any;
+    const pageObject = page as any;
+    console.log('pageObject', pageObject);
 
     const post: BlogPost = {
         id: pid,
@@ -20,7 +21,5 @@ export async function GET(req: Request, { params: { pid } }: any) {
         content: children.results,
     };
 
-    return Response.json({
-        page: post,
-    });
+    return Response.json({ post });
 }
