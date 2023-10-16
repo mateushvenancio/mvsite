@@ -10,6 +10,7 @@ export default function Home() {
         <>
             <Header />
             <HomeSpotify />
+            <hr className="mt-4 text-primary" />
             <Projects />
         </>
     );
