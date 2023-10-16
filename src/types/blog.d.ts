@@ -5,18 +5,11 @@ type BlogPost = {
     author: BlogAuthor;
     title: string;
     tags: Tag[];
-    content: BlogContent[];
+    content: any[];
 };
 
 type BlogAuthor = {
     id: string;
     name: string;
     avatar_url: string;
-};
-
-type BlogContent = {
-    id: string;
-    parentId: string;
-    type: string;
-    content: any;
 };
