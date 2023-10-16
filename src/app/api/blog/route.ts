@@ -16,6 +16,12 @@ export async function GET() {
                 direction: 'ascending',
             },
         ],
+        filter: {
+            property: 'Published',
+            checkbox: {
+                equals: true,
+            },
+        },
     });
 
     const formatted = results.results.map((e) => {

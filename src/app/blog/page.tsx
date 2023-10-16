@@ -7,6 +7,10 @@ export default async function Blog() {
     const json = await response.json();
     const posts: BlogPost[] = json.results;
 
+    if (!posts) {
+        return <div className="text-center">No posts yet! :)</div>;
+    }
+
     return (
         <div className="flex flex-col gap-4">
             {posts.map((e, i) => (
