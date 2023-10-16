@@ -11,6 +11,9 @@ const nextConfig = {
             {
                 hostname: 'i.imgur.com',
             },
+            {
+                hostname: 'lh3.googleusercontent.com',
+            },
         ],
     },
 };

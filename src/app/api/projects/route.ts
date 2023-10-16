@@ -10,9 +10,18 @@ export async function GET() {
 
     const query = await NotionClient.databases.query({
         database_id: projectsId,
-    });
-    const table = await NotionClient.databases.retrieve({
-        database_id: projectsId,
+        sorts: [
+            {
+                timestamp: 'created_time',
+                direction: 'ascending',
+            },
+        ],
+        filter: {
+            property: 'Active',
+            checkbox: {
+                equals: true,
+            },
+        },
     });
 
     const formatProjects = query.results.map((e: any) => {
@@ -25,10 +34,7 @@ export async function GET() {
         };
     });
 
-    const allTags = (table.properties.Tags as any).multi_select.options;
-
     return Response.json({
-        tags: allTags,
         projects: formatProjects,
     });
 }

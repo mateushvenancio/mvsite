@@ -13,6 +13,7 @@ export default function NavBar() {
                 </div>
                 <div className="flex justify-end gap-4 align-baseline">
                     <NavBarLink label="Home" link="/" />
+                    <NavBarLink label="Blog" link="/blog" />
                     <NavBarLink label="Shelf" link="/shelf" />
                     <NavBarLink label="About" link="/about" />
                 </div>

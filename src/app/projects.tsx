@@ -64,7 +64,7 @@ function ProjectTile({ project }: { project: Project }) {
     );
 }
 
-function Tag({ tag }: { tag: ProjectTag }) {
+function Tag({ tag }: { tag: Tag }) {
     const text = colors[tag.color].text ?? colors.default.text;
     const bg = colors[tag.color].background ?? colors.default.background;
 
