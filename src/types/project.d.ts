@@ -1,6 +1,13 @@
 type Project = {
+    id: string;
     title: string;
     description: string;
-    icon: string;
     link: string;
+    tags: ProjectTag[];
+};
+
+type ProjectTag = {
+    id: string;
+    name: string;
+    color: string;
 };
