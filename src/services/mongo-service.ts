@@ -6,7 +6,8 @@ class MongoService {
     constructor(
         private notionToken: string,
         private projectsToken: string,
-        private blogToken: string
+        private blogToken: string,
+        private aboutToken: string
     ) {}
 
     notionClient = new Client({
@@ -100,12 +101,21 @@ class MongoService {
 
         return formatProjects;
     }
+
+    async getAboutPage() {
+        const children = await this.notionClient.blocks.children.list({
+            block_id: this.aboutToken,
+        });
+
+        return children.results;
+    }
 }
 
 const Mongo = new MongoService(
     process.env.NOTION_TOKEN!,
     process.env.NOTION_PROJECTS_ID!,
-    process.env.NOTION_BLOG_ID!
+    process.env.NOTION_BLOG_ID!,
+    process.env.NOTION_ABOUT_ID!
 );
 
 export default Mongo;

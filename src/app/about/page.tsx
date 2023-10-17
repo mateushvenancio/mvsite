@@ -1,17 +1,16 @@
-export default function About() {
+import { BlockRenderer } from '@/components/notion-render';
+import MongoService from '@/services/mongo-service';
+
+export default async function About() {
+    const about = await MongoService.getAboutPage();
+
     return (
         <>
-            <p className="text-2xl font-bold">About</p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-                aliquid laudantium ducimus iusto necessitatibus dignissimos ut,
-                ullam omnis quo. Laborum reiciendis numquam asperiores hic quod
-                perspiciatis, iusto nihil. Voluptas, eveniet! Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Nihil aliquid laudantium
-                ducimus iusto necessitatibus dignissimos ut, ullam omnis quo.
-                Laborum reiciendis numquam asperiores hic quod perspiciatis,
-                iusto nihil. Voluptas, eveniet!
-            </p>
+            <p className="text-xl font-bold">About</p>
+
+            {(about as any[]).map((e, i) => {
+                return <BlockRenderer key={i} block={e} />;
+            })}
         </>
     );
 }
