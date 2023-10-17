@@ -3,7 +3,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HomeSpotify from './spotify';
-import Projects from './projects';
+import Projects from '@/components/projects';
 
 export default function Home() {
     return (

@@ -1,5 +1,5 @@
-import { DateConvert } from '@/app/global/date-convert';
-import BlogTag from '../tag';
+import { DateConvert } from '@/util/date-convert';
+import BlogTag from '@/app/blog/tag';
 import MongoService from '@/services/mongo-service';
 import { BlockRenderer } from '@/components/notion-render';
 

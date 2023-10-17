@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Title from './global/title';
+import Title from '@/components/title';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
 import MongoService from '@/services/mongo-service';
