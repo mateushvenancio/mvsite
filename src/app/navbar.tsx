@@ -15,6 +15,7 @@ export default function NavBar() {
                     <NavBarLink label="Home" link="/" />
                     <NavBarLink label="Blog" link="/blog" />
                     <NavBarLink label="Shelf" link="/shelf" />
+                    <NavBarLink label="Music" link="/music" />
                     <NavBarLink label="About" link="/about" />
                 </div>
             </div>
