@@ -18,7 +18,9 @@
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
-    "react-notion": "^0.10.0"
+    "react-notion": "^0.10.0",
+    "spotify-node-wrapper": "^1.5.0",
+    "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
     "@types/node": "^20",
