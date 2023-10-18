@@ -1,9 +1,6 @@
-const clientId: string = '481182cfe7444333ab10f5636da282d9';
-const clientSecret: string = '5fef94bf68ae4c4fa066013243bd6e52';
-const refreshToken: string =
-    'AQAmrjwoP8YMXvWorRCd_hrc9GZ3LL0URQMxEoekzoFuYvjSKlpIm7WzvvMj-72N_kUlEBwpy1j31YRdhxYEEUOq3THHkYWwGQoZidnt11GTNsUuwirejMho8dF3LqGJEfs';
-
-const scopes: string = 'user-top-read user-read-currently-playing';
+const clientId: string = process.env.SPOTIFY_PUBLIC_KEY!;
+const clientSecret: string = process.env.SPOTIFY_PRIVATE_KEY!; // rotated, since I commited it by mistake
+const refreshToken: string = process.env.SPOTIFY_REFRESH_TOKEN!;
 
 class SpotifyService {
     constructor() {}
