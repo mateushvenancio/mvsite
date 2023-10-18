@@ -23,6 +23,7 @@ class SpotifyService {
                 'grant_type=refresh_token',
                 'refresh_token=' + refreshToken,
             ].join('&'),
+            cache: 'no-store',
         });
         const json = await response.json();
 
