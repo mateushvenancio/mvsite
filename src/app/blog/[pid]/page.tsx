@@ -1,10 +1,11 @@
 import { DateConvert } from '@/util/date-convert';
 import BlogTag from '@/app/blog/tag';
-import MongoService from '@/services/notion-service';
+import { NotionService, NotionProdParams } from '@/services/notion-service';
 import { BlockRenderer } from '@/components/notion-render';
 
 export default async function BlogPage({ params: { pid } }: any) {
-    const post: BlogPost = await MongoService.getBlogPostById(pid);
+    const Notion = new NotionService(NotionProdParams);
+    const post: BlogPost = await Notion.getBlogPostById(pid);
 
     return (
         <div className="">
