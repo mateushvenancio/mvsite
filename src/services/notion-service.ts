@@ -21,7 +21,14 @@ export class NotionService {
 
     private notionClient = new Client({
         auth: this.params.notionToken,
-        logLevel: LogLevel.ERROR,
+        fetch: async function (url, options) {
+            return fetch(url, {
+                ...options,
+                next: {
+                    revalidate: 3600,
+                },
+            });
+        },
     });
 
     async getAllBlogPosts() {
@@ -55,11 +62,6 @@ export class NotionService {
             return post;
         });
 
-        console.log(
-            '[LOG][getAllBlogPosts] Está buscando certo? ' +
-                JSON.stringify(formatted)
-        );
-
         return formatted;
     }
 
@@ -72,7 +74,6 @@ export class NotionService {
         });
 
         const pageObject = page as any;
-        console.log('pageObject', pageObject);
 
         const post: BlogPost = {
             id: pid,
@@ -113,11 +114,6 @@ export class NotionService {
                 tags: e.properties.Tags.multi_select,
             };
         });
-
-        console.log(
-            '[LOG][getAllProjects] Está buscando certo? ' +
-                JSON.stringify(formatProjects)
-        );
 
         return formatProjects;
     }

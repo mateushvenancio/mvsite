@@ -40,8 +40,6 @@ class SpotifyService {
         );
         const json = await response.json();
 
-        console.log('RESULT', json);
-
         return json.items.map((e) => this.convertArtist(e));
     }
 
