@@ -17,7 +17,7 @@ export default function Home() {
 
 function Header() {
     return (
-        <div>
+        <div className="cursor-default">
             <Toast />
             <h1 className="text-4xl font-bold">Mateus Venâncio</h1>
             <h2 className="text-2xl">Developer</h2>

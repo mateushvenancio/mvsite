@@ -1,10 +1,11 @@
 import moment from 'moment';
 import Link from 'next/link';
 import BlogTag from './tag';
-import MongoService from '@/services/mongo-service';
+import { NotionService, NotionProdParams } from '@/services/notion-service';
 
 export default async function Blog() {
-    const posts: BlogPost[] = await MongoService.getAllBlogPosts();
+    const Notion = new NotionService(NotionProdParams);
+    const posts: BlogPost[] = await Notion.getAllBlogPosts();
 
     if (!posts) {
         return <div className="text-center">No posts yet! :)</div>;

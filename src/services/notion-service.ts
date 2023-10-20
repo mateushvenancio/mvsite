@@ -1,22 +1,32 @@
-import { Client } from '@notionhq/client';
+import { Client, LogLevel } from '@notionhq/client';
 
 // const projectsId = process.env.NOTION_PROJECTS_ID!;
 
-class MongoService {
-    constructor(
-        private notionToken: string,
-        private projectsToken: string,
-        private blogToken: string,
-        private aboutToken: string
-    ) {}
+interface NotionServiceParams {
+    notionToken: string;
+    projectsToken: string;
+    blogToken: string;
+    aboutToken: string;
+}
 
-    notionClient = new Client({
-        auth: this.notionToken,
+export const NotionProdParams: NotionServiceParams = {
+    notionToken: process.env.NOTION_TOKEN!,
+    projectsToken: process.env.NOTION_PROJECTS_ID!,
+    blogToken: process.env.NOTION_BLOG_ID!,
+    aboutToken: process.env.NOTION_ABOUT_ID!,
+};
+
+export class NotionService {
+    constructor(private params: NotionServiceParams) {}
+
+    private notionClient = new Client({
+        auth: this.params.notionToken,
+        logLevel: LogLevel.ERROR,
     });
 
     async getAllBlogPosts() {
         const results = await this.notionClient.databases.query({
-            database_id: this.blogToken,
+            database_id: this.params.blogToken,
             sorts: [
                 {
                     timestamp: 'created_time',
@@ -74,7 +84,7 @@ class MongoService {
 
     async getAllProjects() {
         const query = await this.notionClient.databases.query({
-            database_id: this.projectsToken,
+            database_id: this.params.projectsToken,
             sorts: [
                 {
                     timestamp: 'created_time',
@@ -104,18 +114,18 @@ class MongoService {
 
     async getAboutPage() {
         const children = await this.notionClient.blocks.children.list({
-            block_id: this.aboutToken,
+            block_id: this.params.aboutToken,
         });
 
         return children.results;
     }
 }
 
-const Mongo = new MongoService(
-    process.env.NOTION_TOKEN!,
-    process.env.NOTION_PROJECTS_ID!,
-    process.env.NOTION_BLOG_ID!,
-    process.env.NOTION_ABOUT_ID!
-);
+// const Notion = new NotionService(
+//     process.env.NOTION_TOKEN!,
+//     process.env.NOTION_PROJECTS_ID!,
+//     process.env.NOTION_BLOG_ID!,
+//     process.env.NOTION_ABOUT_ID!
+// );
 
-export default Mongo;
+// export default Notion;

@@ -87,7 +87,7 @@ export function RenderRichText({
                 className={
                     className +
                     formatClasses.join(' ') +
-                    ' text-primary underline'
+                    ' text-gray-500 underline'
                 }
                 href={text.text.link.url}
                 target="_blank"

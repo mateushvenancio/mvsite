@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Title from '@/components/title';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
-import MongoService from '@/services/mongo-service';
+import { NotionService, NotionProdParams } from '@/services/notion-service';
 
 const colors: any = {
     yellow: {
@@ -28,7 +28,8 @@ const colors: any = {
 };
 
 export default async function Projects() {
-    const projects: Project[] = await MongoService.getAllProjects();
+    const Notion = new NotionService(NotionProdParams);
+    const projects: Project[] = await Notion.getAllProjects();
 
     return (
         <>

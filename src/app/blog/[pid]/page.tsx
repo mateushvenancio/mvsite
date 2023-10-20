@@ -1,6 +1,6 @@
 import { DateConvert } from '@/util/date-convert';
 import BlogTag from '@/app/blog/tag';
-import MongoService from '@/services/mongo-service';
+import MongoService from '@/services/notion-service';
 import { BlockRenderer } from '@/components/notion-render';
 
 export default async function BlogPage({ params: { pid } }: any) {

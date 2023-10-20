@@ -1,8 +1,9 @@
 import { BlockRenderer } from '@/components/notion-render';
-import MongoService from '@/services/mongo-service';
+import { NotionService, NotionProdParams } from '@/services/notion-service';
 
 export default async function About() {
-    const about = await MongoService.getAboutPage();
+    const Notion = new NotionService(NotionProdParams);
+    const about = await Notion.getAboutPage();
 
     return (
         <>
