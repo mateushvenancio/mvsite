@@ -7,6 +7,7 @@ interface NotionServiceParams {
     projectsToken: string;
     blogToken: string;
     aboutToken: string;
+    shelfToken: string;
 }
 
 export const NotionProdParams: NotionServiceParams = {
@@ -14,6 +15,7 @@ export const NotionProdParams: NotionServiceParams = {
     projectsToken: process.env.NOTION_PROJECTS_ID!,
     blogToken: process.env.NOTION_BLOG_ID!,
     aboutToken: process.env.NOTION_ABOUT_ID!,
+    shelfToken: process.env.NOTION_SHELF_ID!,
 };
 
 export class NotionService {
@@ -124,6 +126,46 @@ export class NotionService {
         });
 
         return children.results;
+    }
+
+    async getShelf(): Promise<ShelfItem[]> {
+        const items = await this.notionClient.databases.query({
+            database_id: this.params.shelfToken,
+            sorts: [
+                {
+                    timestamp: 'created_time',
+                    direction: 'descending',
+                },
+            ],
+            filter: {
+                property: 'Active',
+                checkbox: {
+                    equals: true,
+                },
+            },
+        });
+
+        const shelfItems: ShelfItem[] = items.results.map(function (e: any) {
+            const props = e.properties;
+
+            return {
+                id: e.id,
+                title: props.Name.title[0].plain_text,
+                desc: props.Description.rich_text[0].plain_text,
+                rate: props.Rate.number,
+                emoji: e.icon
+                    ? e.icon.type == 'emoji'
+                        ? e.icon.emoji
+                        : null
+                    : null,
+                image: e.cover?.file?.url ?? '',
+                tag: props.Type.select,
+            };
+        });
+
+        // console.log('Shelf Items', JSON.stringify(items));
+
+        return shelfItems;
     }
 }
 

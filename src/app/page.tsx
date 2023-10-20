@@ -1,8 +1,10 @@
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faCodeBranch, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Projects from '@/components/projects';
+import Link from 'next/link';
+import { NotionTag, Title } from '@/components';
+import { NotionProdParams, NotionService } from '@/services/notion-service';
 
 export default function Home() {
     return (
@@ -67,5 +69,43 @@ function HomeIcon({
             <FontAwesomeIcon icon={icon} className="pr-2" />
             {text}
         </a>
+    );
+}
+
+async function Projects() {
+    const Notion = new NotionService(NotionProdParams);
+    const projects: Project[] = await Notion.getAllProjects();
+
+    return (
+        <>
+            <Title title="Projects" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {projects.map((e) => {
+                    return <ProjectTile key={e.id} project={e} />;
+                })}
+            </div>
+        </>
+    );
+}
+
+function ProjectTile({ project }: { project: Project }) {
+    return (
+        <div className="shadow-md hover:shadow-lg rounded-lg p-4 transition-all cursor-default">
+            <div className="flex gap-2 items-center">
+                <p className="text-lg grow">{project.title}</p>
+                <Link href={project.link}>
+                    <FontAwesomeIcon
+                        icon={faCodeBranch}
+                        className="cursor-pointer"
+                    />
+                </Link>
+            </div>
+            <p className="text-sm line-clamp-2">{project.description}</p>
+            <div className="flex flex-wrap gap-2 mt-2">
+                {project.tags.map((e, i) => {
+                    return <NotionTag key={i} tag={e} />;
+                })}
+            </div>
+        </div>
     );
 }

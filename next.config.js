@@ -17,6 +17,9 @@ const nextConfig = {
             {
                 hostname: 'i.scdn.co',
             },
+            {
+                hostname: 'prod-files-secure.s3.us-west-2.amazonaws.com',
+            },
         ],
     },
 };
