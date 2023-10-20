@@ -55,6 +55,11 @@ export class NotionService {
             return post;
         });
 
+        console.log(
+            '[LOG][getAllBlogPosts] Está buscando certo? ' +
+                JSON.stringify(formatted)
+        );
+
         return formatted;
     }
 
@@ -108,6 +113,11 @@ export class NotionService {
                 tags: e.properties.Tags.multi_select,
             };
         });
+
+        console.log(
+            '[LOG][getAllProjects] Está buscando certo? ' +
+                JSON.stringify(formatProjects)
+        );
 
         return formatProjects;
     }
