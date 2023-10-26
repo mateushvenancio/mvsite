@@ -4,9 +4,11 @@ import Link from 'next/link';
 import { MillisecondsConvert } from '@/util/date-convert';
 
 export default async function Music() {
-    const current = await SpotifyService.getCurrentPlaying();
-    const tracks = await SpotifyService.getTracks();
-    const artists = await SpotifyService.getArtists();
+    const [current, tracks, artists] = await Promise.all([
+        SpotifyService.getCurrentPlaying(),
+        SpotifyService.getTracks(),
+        SpotifyService.getArtists(),
+    ]);
 
     return (
         <div>

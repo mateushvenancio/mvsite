@@ -47,7 +47,7 @@ function Header() {
 
 function Toast() {
     return (
-        <div className="bg-primary w-fit text-white px-4 py-2 rounded-tr-lg rounded-tl-lg rounded-br-lg mb-2 hover:ml-2 transition-all">
+        <div className="bg-gradient-to-r from-primary to-secondary w-fit text-white px-4 py-2 rounded-tr-lg rounded-tl-lg rounded-br-lg mb-2 hover:ml-2 transition-all">
             Hello, I am
         </div>
     );
@@ -63,7 +63,10 @@ function HomeIcon({
     link: string;
 }) {
     return (
-        <a href={link} className="hover:text-primary hover:pl-2 transition-all">
+        <a
+            href={link}
+            className="hover:text-secondary hover:pl-2 transition-all"
+        >
             <FontAwesomeIcon icon={icon} className="pr-2" />
             {text}
         </a>
