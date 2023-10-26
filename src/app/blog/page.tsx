@@ -1,7 +1,7 @@
 import moment from 'moment';
 import Link from 'next/link';
-import BlogTag from './tag';
 import { NotionService, NotionProdParams } from '@/services/notion-service';
+import { NotionTag } from '@/components';
 
 export default async function Blog() {
     const Notion = new NotionService(NotionProdParams);
@@ -36,7 +36,7 @@ function BlogPost({ post }: { post: BlogPost }) {
             </div>
             <div className="flex flex-wrap gap-1 mt-1">
                 {post.tags.map((e, i) => {
-                    return <BlogTag key={i} tag={e} />;
+                    return <NotionTag key={i} tag={e} />;
                 })}
             </div>
         </div>
