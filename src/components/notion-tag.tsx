@@ -42,7 +42,6 @@ const colors: any = {
 };
 
 export function NotionTag({ tag }: { tag: Tag }) {
-    console.log('Cor defeito', tag);
     const text = colors[tag.color].text;
     const bg = colors[tag.color].background;
 

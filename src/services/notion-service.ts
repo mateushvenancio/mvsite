@@ -39,7 +39,7 @@ export class NotionService {
             sorts: [
                 {
                     timestamp: 'created_time',
-                    direction: 'ascending',
+                    direction: 'descending',
                 },
             ],
             filter: {

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export function BlockRenderer({ block }: any) {
+export function BlockRenderer({ block, index }: any) {
     switch (block.type) {
         case 'heading_1':
             return (
@@ -46,14 +46,14 @@ export function BlockRenderer({ block }: any) {
             );
         case 'paragraph':
             return (
-                <p>
+                <p className={index == 0 ? '' : 'pt-3'}>
                     {(block.paragraph.rich_text as any[]).map((e, i) => {
-                        return <RenderRichText key={i} text={e} className="" />;
+                        return <RenderRichText key={i} text={e} />;
                     })}
                 </p>
             );
         default:
-            return <div>Mateus</div>;
+            return <div></div>;
     }
 }
 
@@ -97,7 +97,7 @@ export function RenderRichText({
         );
     }
     return (
-        <span className={className + formatClasses.join(' ')}>
+        <span className={className + ' ' + formatClasses.join(' ')}>
             {text.text.content}
         </span>
     );

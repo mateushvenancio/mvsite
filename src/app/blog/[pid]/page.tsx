@@ -17,7 +17,7 @@ export default async function BlogPage({ params: { pid } }: any) {
                 <hr />
             </div>
             {(post.content as any[]).map((e, i) => {
-                return <BlockRenderer key={i} block={e} />;
+                return <BlockRenderer key={i} block={e} index={i} />;
             })}
             <div className="mt-4 mb-1">Tags:</div>
             <div className="flex flex-wrap gap-2">
