@@ -104,12 +104,13 @@ class SpotifyService {
     }
 
     private convertArtist(artist): SpotifyArtist {
+        console.log('Artist', artist);
         return {
             id: artist.id,
             name: artist.name,
             genres: artist.genres,
             images: artist.images.map((e) => e.url),
-            url: artist.href,
+            url: artist.external_urls.spotify,
         };
     }
 }

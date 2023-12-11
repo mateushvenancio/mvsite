@@ -25,7 +25,7 @@ export default async function Music() {
             </div>
             <hr className="my-2" />
             <p className="text-lg pb-2">My favorites artists of all time!</p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
                 {artists.map((e, i) => {
                     return <ArtistTile key={i} artist={e} index={i + 1} />;
                 })}
@@ -53,7 +53,7 @@ function ListeningNow({ song }: { song: SpotifySong | null }) {
                         ? 'Check it later!'
                         : song.artists.map((e, i) => {
                               return (
-                                  <Link key={i} href={e.url}>
+                                  <Link key={i} href={e.url} target="_blank">
                                       {e.name}
                                   </Link>
                               );
@@ -93,29 +93,19 @@ function ArtistTile({
     index: number;
 }) {
     return (
-        <Link href={artist.url}>
-            <div className="flex flex-col items-center gap-2 cursor-default hover:bg-gray-200 py-4 text-center transition-all rounded-lg">
-                <Image
-                    src={artist.images.at(0) ?? '/spotify_icon.png'}
-                    alt="Cover"
-                    height={55}
-                    width={55}
-                    className="rounded-full aspect-square object-cover"
-                />
-                <p>
-                    {index}º {artist.name}
-                </p>
-                <p className="text-xs">
-                    {artist.genres.map((e, i, array) => {
-                        return (
-                            <>
-                                <span key={i}>{e}</span>
-                                {i < array.length - 1 && <span>,&nbsp;</span>}
-                            </>
-                        );
-                    })}
-                </p>
-            </div>
+        <Link
+            target="_blank"
+            href={artist.url}
+            className="rounded-full bg-primary text-white px-1 py-1 flex items-center gap-2"
+        >
+            <Image
+                src={artist.images.at(0) ?? '/spotify_icon.png'}
+                alt="Cover"
+                height={40}
+                width={40}
+                className="rounded-full aspect-square object-cover"
+            />
+            <span className="truncate">{artist.name}</span>
         </Link>
     );
 }
@@ -134,6 +124,7 @@ function Artists({
                 return (
                     <>
                         <Link
+                            target="_blank"
                             key={i}
                             href={e.url}
                             className={'hover:underline'}
