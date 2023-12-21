@@ -77,10 +77,14 @@ class SpotifyService {
 
         const json = await response.json();
 
+        if (!json.item?.id) {
+            return null;
+        }
+
         return this.convertTrack(json.item);
     }
 
-    private convertTrack(track): SpotifySong {
+    private convertTrack(track: any): SpotifySong {
         return {
             id: track.id,
             name: track.name,
@@ -104,7 +108,6 @@ class SpotifyService {
     }
 
     private convertArtist(artist): SpotifyArtist {
-        console.log('Artist', artist);
         return {
             id: artist.id,
             name: artist.name,
