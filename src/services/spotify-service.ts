@@ -92,7 +92,7 @@ class SpotifyService {
             artists: track.artists.map((e) => {
                 return {
                     name: e.name,
-                    url: e.href,
+                    url: e.external_urls.spotify,
                 };
             }),
             album: {
@@ -103,7 +103,7 @@ class SpotifyService {
                 }),
                 url: track.album.href,
             },
-            url: track.href,
+            url: track.external_urls.spotify,
         };
     }
 

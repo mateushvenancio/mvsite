@@ -46,7 +46,11 @@ function ListeningNow({ song }: { song: SpotifySong | null }) {
             />
             <div>
                 <div className="text-lg font-semibold">
-                    {song?.name ?? 'Nothing playing right now'}
+                    {song ? (
+                        <Link href={song.url}>{song.name}</Link>
+                    ) : (
+                        'Nothing playing right now'
+                    )}
                 </div>
                 <div className="text-sm">
                     {!song
@@ -75,7 +79,11 @@ function SongTile({ song, index }: { song: SpotifySong; index: number }) {
                 width={55}
             />
             <div className="grow">
-                <div className="font-semibold">{song.name}</div>
+                <Link href={song.url} target="_blank">
+                    <div className="font-semibold hover:underline">
+                        {song.name}
+                    </div>
+                </Link>
                 <div className="text-sm">
                     <Artists artists={song.artists} />
                 </div>
