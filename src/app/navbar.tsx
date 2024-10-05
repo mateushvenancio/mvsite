@@ -10,15 +10,11 @@ export default function NavBar() {
 
     return (
         <div className="z-10 w-full py-4 mb-4 text-primary border border-b-primary/25 border-t-transparent border-x-transparent cursor-default">
-            <div className="flex justify-between">
-                <div>
-                    <span className="text-primary font-bold">://</span>
-                    mateusvenancio
-                </div>
+            <div className="flex justify-center">
                 <div className="justify-end gap-4 align-baseline hidden md:flex">
                     <NavBarLink label="Home" link="/" />
                     <NavBarLink label="Blog" link="/blog" />
-                    <NavBarLink label="Shelf" link="/shelf" />
+                    <NavBarLink label="Games" link="/games" />
                     <NavBarLink label="Music" link="/music" />
                     <NavBarLink label="About" link="/about" />
                 </div>
@@ -50,8 +46,8 @@ export default function NavBar() {
                 />
                 <NavBarLink
                     click={() => setOpen(false)}
-                    label="Shelf"
-                    link="/shelf"
+                    label="Games"
+                    link="/games"
                 />
                 <NavBarLink
                     click={() => setOpen(false)}

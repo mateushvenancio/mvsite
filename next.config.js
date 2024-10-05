@@ -20,6 +20,9 @@ const nextConfig = {
             {
                 hostname: 'prod-files-secure.s3.us-west-2.amazonaws.com',
             },
+            {
+                hostname: 'img-grouvee-com.b-cdn.net',
+            },
         ],
     },
 };

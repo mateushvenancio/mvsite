@@ -12,7 +12,7 @@ function Header() {
         <div className="cursor-default">
             <Toast />
             <h1 className="text-4xl font-bold">Mateus Venâncio</h1>
-            <h2 className="text-2xl">Developer</h2>
+            <h2 className="text-2xl">Software Developer</h2>
             <br />
             <div className="grid gap-y-1">
                 <HomeIcon
@@ -30,9 +30,6 @@ function Header() {
                     text="mateushvenancio"
                     link="https://github.com/mateushvenancio"
                 />
-            </div>
-            <div className="py-2">
-                <p>I make software. That&apos;s what I love to do.</p>
             </div>
         </div>
     );
