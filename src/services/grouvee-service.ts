@@ -8,6 +8,7 @@ export class GrouveeService {
     async getGameList(): Promise<GameShelf[]> {
         const result = await fetch(this.grouveUrl, {
             method: 'GET',
+            next: { revalidate: 7200 },
         });
         const json = await result.json();
 
