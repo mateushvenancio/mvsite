@@ -1,61 +1,72 @@
-import { BlockRenderer } from '@/components/notion-render';
-import { NotionService, NotionProdParams } from '@/services/notion-service';
-import { NotionTag, Title } from '@/components';
-import { faCodeBranch } from '@fortawesome/free-solid-svg-icons';
+import { faLinkedin, IconDefinition } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons/faGithub';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
+import Image from 'next/image';
 
 export default async function About() {
-    const Notion = new NotionService(NotionProdParams);
-    const about = await Notion.getAboutPage();
-
     return (
-        <>
-            <p className="text-xl font-bold">About</p>
-
-            {(about as any[]).map((e, i) => {
-                return <BlockRenderer key={i} block={e} />;
-            })}
-
-            <Projects />
-        </>
+        <header className="text-center">
+            <Image
+                className="w-32 h-32 rounded-full mx-auto mb-4 shadow-lg border-4 border-white"
+                src="https://avatars.githubusercontent.com/u/38964103"
+                alt="Profile Picture"
+                width={128}
+                height={128}
+            />
+            <h1 className="text-4xl font-bold text-gray-900">
+                Mateus Venâncio
+            </h1>
+            <p className="text-lg mt-2 text-gray-600">
+                Web Developer, Music Enthusiast & Blogger
+            </p>
+            <SocialLinks />
+        </header>
     );
 }
 
-async function Projects() {
-    const Notion = new NotionService(NotionProdParams);
-    const projects: Project[] = await Notion.getAllProjects();
-
+function SocialLinks() {
     return (
-        <>
-            <Title title="Projects" />
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {projects.map((e) => {
-                    return <ProjectTile key={e.id} project={e} />;
-                })}
-            </div>
-        </>
-    );
-}
-
-function ProjectTile({ project }: { project: Project }) {
-    return (
-        <div className="shadow-md hover:shadow-lg rounded-lg p-4 transition-all cursor-default">
-            <div className="flex gap-2 items-center">
-                <p className="text-lg grow">{project.title}</p>
-                <Link href={project.link}>
-                    <FontAwesomeIcon
-                        icon={faCodeBranch}
-                        className="cursor-pointer"
-                    />
-                </Link>
-            </div>
-            <p className="text-sm line-clamp-2">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mt-2">
-                {project.tags.map((e, i) => {
-                    return <NotionTag key={i} tag={e} />;
-                })}
-            </div>
+        <div className="flex justify-center space-x-6 mt-4">
+            <HomeIcon
+                icon={faEnvelope}
+                link="mailto:contato@mateusvenancio.com.br"
+                color="hover:text-blue-400"
+            />
+            <HomeIcon
+                icon={faLinkedin}
+                link="https://www.linkedin.com/in/mateushvenancio/"
+                color="hover:text-blue-700"
+            />
+            <HomeIcon
+                icon={faGithub}
+                link="https://github.com/mateushvenancio"
+                color="hover:text-gray-900"
+            />
         </div>
+    );
+}
+
+function HomeIcon({
+    icon,
+    link,
+    color,
+}: {
+    icon: IconDefinition;
+    link: string;
+    color: string;
+}) {
+    const fullClass = 'text-gray-500 transition-colors duration-300 ' + color;
+
+    return (
+        <a href={link} className={fullClass} target="_blank">
+            <FontAwesomeIcon
+                fill="currentColor"
+                icon={icon}
+                className="w-8 h-8"
+                size="2xl"
+                aria-hidden="true"
+            />
+        </a>
     );
 }

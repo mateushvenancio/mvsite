@@ -19,7 +19,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en">
+        <html lang="pt">
             <body className={`${inter.className} px-4 max-w-[700px] m-auto`}>
                 <NavBar />
                 {children}
@@ -31,8 +31,8 @@ export default function RootLayout({
 
 function HomeFooter() {
     return (
-        <div className="py-8 text-center border border-t-primary/25 border-b-transparent border-x-transparent py-4 mt-8">
-            Made with ❤️ using Tailwind & NextJs.
-        </div>
+        <footer className="text-center mt-12 py-6 border-t border-gray-200">
+            <p className="text-gray-500">Obrigado pela visita!</p>
+        </footer>
     );
 }

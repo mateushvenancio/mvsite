@@ -1,7 +1,6 @@
 import moment from 'moment';
 import Link from 'next/link';
 import { NotionService, NotionProdParams } from '@/services/notion-service';
-import { NotionTag } from '@/components';
 
 export default async function Blog() {
     const Notion = new NotionService(NotionProdParams);
@@ -23,22 +22,17 @@ export default async function Blog() {
 function BlogPost({ post }: { post: BlogPost }) {
     const createdAt = moment(post.createdAt).format('D MMM YY, HH:mm');
     return (
-        <div className="cursor-default group">
+        <div className="ml-8 cursor-default group">
+            <p className="text-sm text-gray-500 mb-1">{createdAt}</p>
+            <p className="text-xl font-semibold text-gray-800 mb-1">
+                {post.title}
+            </p>
             <Link
                 href={`/blog/${post.id}`}
-                className="text-xl group-hover:underline"
+                className="font-semibold text-indigo-600 hover:text-indigo-800 transition-colors duration-300"
             >
-                {post.title}
+                Ler mais &rarr;
             </Link>
-            <div className="flex items-center gap-1">
-                <p className="text-sm">{post.author?.name ?? 'Sem autor'} @ </p>
-                <p className="text-sm">{createdAt}</p>
-            </div>
-            <div className="flex flex-wrap gap-1 mt-1">
-                {post.tags.map((e, i) => {
-                    return <NotionTag key={i} tag={e} />;
-                })}
-            </div>
         </div>
     );
 }
