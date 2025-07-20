@@ -18,7 +18,7 @@ export default async function About() {
                 Mateus Venâncio
             </h1>
             <p className="text-lg mt-2 text-gray-600">
-                Web Developer, Music Enthusiast & Blogger
+                software developer & science enthusiast
             </p>
             <SocialLinks />
         </header>
