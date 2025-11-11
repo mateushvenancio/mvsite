@@ -6,16 +6,14 @@ interface NotionServiceParams {
     notionToken: string;
     projectsToken: string;
     blogToken: string;
-    aboutToken: string;
-    shelfToken: string;
+    readingsToken: string;
 }
 
 export const NotionProdParams: NotionServiceParams = {
     notionToken: process.env.NOTION_TOKEN!,
     projectsToken: process.env.NOTION_PROJECTS_ID!,
     blogToken: process.env.NOTION_BLOG_ID!,
-    aboutToken: process.env.NOTION_ABOUT_ID!,
-    shelfToken: process.env.NOTION_SHELF_ID!,
+    readingsToken: process.env.NOTION_READINGS!,
 };
 
 export class NotionService {
@@ -90,90 +88,33 @@ export class NotionService {
         return post;
     }
 
-    async getAllProjects() {
-        const query = await this.notionClient.databases.query({
-            database_id: this.params.projectsToken,
+    async getReadings(): Promise<Reading[]> {
+        const result = await this.notionClient.databases.query({
+            database_id: this.params.readingsToken,
             sorts: [
                 {
-                    timestamp: 'created_time',
-                    direction: 'ascending',
-                },
-            ],
-            filter: {
-                property: 'Active',
-                checkbox: {
-                    equals: true,
-                },
-            },
-        });
-
-        const formatProjects = query.results.map((e: any) => {
-            return {
-                id: e.id,
-                title: e.properties.Title.title[0].plain_text,
-                description: e.properties.Description.rich_text[0].plain_text,
-                link: e.properties.Link.url,
-                tags: e.properties.Tags.multi_select,
-            };
-        });
-
-        return formatProjects;
-    }
-
-    async getAboutPage() {
-        const children = await this.notionClient.blocks.children.list({
-            block_id: this.params.aboutToken,
-        });
-
-        return children.results;
-    }
-
-    async getShelf(): Promise<ShelfItem[]> {
-        const items = await this.notionClient.databases.query({
-            database_id: this.params.shelfToken,
-            sorts: [
-                {
-                    timestamp: 'created_time',
                     direction: 'descending',
+                    timestamp: 'created_time',
                 },
             ],
             filter: {
-                property: 'Active',
+                property: 'Published',
                 checkbox: {
                     equals: true,
                 },
             },
         });
 
-        const shelfItems: ShelfItem[] = items.results.map(function (e: any) {
-            const props = e.properties;
-
+        const formatted: Reading[] = result.results.map((e) => {
+            const body = (e as any).properties as any;
+            const createdAt = (e as any).created_time;
             return {
-                id: e.id,
-                title: props.Name.title[0].plain_text,
-                desc: props.Description.rich_text[0].plain_text,
-                rate: props.Rate.number,
-                emoji: e.icon
-                    ? e.icon.type == 'emoji'
-                        ? e.icon.emoji
-                        : null
-                    : null,
-                image: e.cover?.file?.url ?? '',
-                tag: props.Type.select,
+                link: body.Link.rich_text[0].plain_text,
+                title: body.Title.title[0].plain_text,
+                createdAt,
             };
         });
 
-        // console.log('Shelf Items', JSON.stringify(items));
-
-        return shelfItems;
+        return formatted;
     }
 }
-
-// const Notion = new NotionService(
-//     process.env.NOTION_TOKEN!,
-//     process.env.NOTION_PROJECTS_ID!,
-//     process.env.NOTION_BLOG_ID!,
-//     process.env.NOTION_ABOUT_ID!
-// );
-
-// export default Notion;
