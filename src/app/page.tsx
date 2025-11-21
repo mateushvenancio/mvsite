@@ -7,11 +7,12 @@ export default function Home() {
     return (
         <>
             <About />
-            <TitleWithDivisor title="Posts do blog" />
+            {/* <TitleWithDivisor title="Posts do blog" />
             <Blog />
             <TitleWithDivisor title="Leituras" />
-            <Readings limit={4} />
-            <TitleWithDivisor title="Músicas que eu tenho ouvido" />
+            <Readings limit={4} /> */}
+            {/* <TitleWithDivisor title="Músicas que eu tenho ouvido" /> */}
+            <TitleWithDivisor title="" />
             <Music />
         </>
     );
