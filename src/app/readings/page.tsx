@@ -1,14 +1,10 @@
 import { NotionService, NotionProdParams } from '@/services/notion-service';
 import Link from 'next/link';
 
-export default async function Readings({ limit }: { limit?: number }) {
+export default async function Readings() {
     const Notion = new NotionService(NotionProdParams);
     const result: Reading[] = await Notion.getReadings();
     let readings = result;
-
-    if (limit && typeof limit === 'number') {
-        readings = result.slice(0, limit);
-    }
 
     return (
         <div>
@@ -18,9 +14,7 @@ export default async function Readings({ limit }: { limit?: number }) {
                 </div>
             ))}
             <div className="mt-4">
-                {limit && (
-                    <Link href={'/readings'}>Ver todas as leituras →</Link>
-                )}
+                <Link href={'/readings'}>Ver todas as leituras →</Link>
             </div>
         </div>
     );
