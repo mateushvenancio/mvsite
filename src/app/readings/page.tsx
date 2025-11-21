@@ -1,6 +1,4 @@
 import { NotionService, NotionProdParams } from '@/services/notion-service';
-import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 
 export default async function Readings({ limit }: { limit?: number }) {
