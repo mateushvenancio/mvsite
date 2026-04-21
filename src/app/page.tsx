@@ -63,7 +63,7 @@ function PersonalSite() {
                                 star-stuff.&quot;
                             </p>
                             <p className="quote-src">
-                                // Carl Sagan · Cosmos, 1980
+                                {'// Carl Sagan · Cosmos, 1980'}
                             </p>
                         </div>
 
