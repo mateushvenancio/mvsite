@@ -2,14 +2,11 @@
 
 ## .env variables
 
-##### NOTION_TOKEN
+##### SPOTIFY_PUBLIC_KEY / SPOTIFY_PRIVATE_KEY
 
--   Get at [Notion's My Integrations](https://www.notion.so/my-integrations)
+-   Client ID and Client Secret from the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
 
-##### NOTION_PROJECTS_ID
+##### SPOTIFY_REFRESH_TOKEN
 
--   Get at <b>Projects</b> table
-
-##### NOTION_BLOG_ID
-
--   Get at <b>Blog</b> table
+-   Refresh token generated with the scopes `user-read-currently-playing`, `user-top-read` and `user-read-recently-played`
+-   Without `user-read-recently-played` the site still works, but shows nothing when no song is playing

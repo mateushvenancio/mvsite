@@ -1,22 +1,33 @@
 import type { Metadata } from 'next';
-import { Space_Mono, Syne } from 'next/font/google';
+import { JetBrains_Mono, Space_Grotesk, Syne } from 'next/font/google';
 import './globals.css';
 
-const spaceMono = Space_Mono({
-    weight: ['400', '700'],
+const mono = JetBrains_Mono({
+    weight: ['400', '500', '700'],
     subsets: ['latin'],
-    variable: '--font-space-mono',
+    variable: '--font-mono',
 });
 
 const syne = Syne({
-    weight: ['700', '800'],
+    weight: ['600', '700', '800'],
     subsets: ['latin'],
-    variable: '--font-syne',
+    variable: '--font-display',
+});
+
+const spaceGrotesk = Space_Grotesk({
+    weight: ['700'],
+    subsets: ['latin'],
+    variable: '--font-name',
 });
 
 export const metadata: Metadata = {
     title: 'Mateus Venâncio — Software Engineer',
-    description: 'Software engineer. Sol III. MWG-001.',
+    description:
+        'Software engineer. Código, cosmos, games e as músicas que eu mais ouço.',
+    themeColor: [
+        { media: '(prefers-color-scheme: light)', color: '#f4f3f0' },
+        { media: '(prefers-color-scheme: dark)', color: '#171716' },
+    ],
 };
 
 export default function RootLayout({
@@ -25,7 +36,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en" className={`${spaceMono.variable} ${syne.variable}`}>
+        <html lang="pt-BR" className={`${mono.variable} ${syne.variable} ${spaceGrotesk.variable}`}>
             <body>{children}</body>
         </html>
     );
